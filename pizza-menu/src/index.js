@@ -51,7 +51,6 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <Pizza />
       <Menu />
       <Footer />
     </div>
@@ -71,22 +70,35 @@ function Header() {
 function Menu() {
   return (
     <div className="menu">
-      <h2>Our Menu</h2>;
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <main>
+        <h2>Our Menu</h2>;
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }
 
-function Pizza() {
+function Pizza({ pizzaObj }) {
+  if (pizzaObj.soldOut) return null;
+
   return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza spinaci" />
-      <h2>Pizza</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
+    <li className="pizza">
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <h3>{pizzaObj.name}</h3>
+      <p>{pizzaObj.ingredients}</p>
+
+      {pizzaObj.soldOut ? (
+        <span> SOLD OUT</span>
+      ) : (
+        <span> {pizzaObj.price}</span>
+      )}
+
+      <span>{pizzaObj.soldOut ? 'SOLD OUT' : pizzaObj.price}</span>
+    </li>
   );
 }
 

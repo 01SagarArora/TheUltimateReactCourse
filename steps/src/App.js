@@ -11,7 +11,7 @@ export default function App() {
 const questions = [
   {
     id: 3457,
-    question: 'What language is React based on?',
+    question: 'What language the is React based on?',
     answer: 'JavaScript',
   },
   {

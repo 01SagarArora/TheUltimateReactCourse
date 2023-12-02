@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+
+import "./App.css";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -19,6 +20,14 @@ export default function App() {
     );
   }
 
+  function handleClearList() {
+    const confirmed = window.confirm("Are you want to delete all items?");
+
+    if (confirmed) {
+      setItems([]);
+    }
+  }
+
   return (
     <div className="app">
       <Logo />
@@ -27,6 +36,7 @@ export default function App() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
+        onClearList={handleClearList}
       />
       <Stats items={items} />
     </div>
@@ -38,7 +48,7 @@ function Logo() {
 }
 
 function Form({ onAddItems }) {
-  const [description, setDesciption] = useState('');
+  const [description, setDesciption] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [items, setItems] = useState([]);
 
@@ -52,7 +62,7 @@ function Form({ onAddItems }) {
 
     onAddItems(newItem);
 
-    setDesciption('');
+    setDesciption("");
     setQuantity(1);
   }
 
@@ -77,22 +87,22 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackagingList({ items, onDeleteItem, onToggleItem }) {
-  const [sortBy, setSortBy] = useState('input');
+function PackagingList({ items, onDeleteItem, onToggleItem, onClearList }) {
+  const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
 
-  if (sortBy === 'input') {
+  if (sortBy === "input") {
     sortedItems = items;
   }
 
-  if (sortBy === 'description') {
+  if (sortBy === "description") {
     sortedItems = items
       .slice()
       .sort((a, b) => a.description.localeCompare(b.description));
   }
 
-  if (sortBy === 'packed') {
+  if (sortBy === "packed") {
     sortedItems = items
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
@@ -117,6 +127,7 @@ function PackagingList({ items, onDeleteItem, onToggleItem }) {
           <option value="description">Sort by the description</option>
           <option value="packed">Sort by the packed status</option>
         </select>
+        <button onClick={onClearList}>Clear List</button>
       </div>
     </div>
   );
@@ -130,7 +141,7 @@ function Item({ item, onDeleteItem, onToggleItem }) {
         value={item.packed}
         onChange={() => onToggleItem(item.id)}
       />
-      <span style={item.packed ? { textDecoration: 'line-through' } : {}}>
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
       <button onClick={() => onDeleteItem(item.id)}>❌&times;</button>
@@ -155,7 +166,7 @@ function Stats({ items }) {
     <footer className="stats">
       <em>
         {percentage === 100
-          ? 'You got everything! Ready to go'
+          ? "You got everything! Ready to go"
           : ` 💼 You have {numItems} items on your list, and you already packed X ({percentage}%)}`}
       </em>
     </footer>

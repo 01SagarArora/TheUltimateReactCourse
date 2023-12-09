@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 
 const faqs = [
   {
@@ -16,8 +17,7 @@ const faqs = [
 ];
 
 export default function App() {
-
-  const { price, setPrice } = useState();
+  const [price, setPrice] = useState("0");
 
   function handlePrice() {
     setPrice(price);
@@ -28,20 +28,22 @@ export default function App() {
       <BillInput isPrice={handlePrice}>
         <p style={{ display: "inline-block" }}>How much was the bill </p>
       </BillInput>
-      
+
       <SelectPercentage>
         <p style={{ display: "inline-block" }}>How did you like the service </p>
       </SelectPercentage>
 
-      <SelectPercentage >
-        <p style={{ display: "inline-block" }}>How did you friend like the service </p>
+      <SelectPercentage>
+        <p style={{ display: "inline-block" }}>
+          How did you friend like the service{" "}
+        </p>
       </SelectPercentage>
       <Output />
     </div>
   );
-} 
+}
 
-function SelectPercentage({children}) {
+function SelectPercentage({ children }) {
   return (
     <div>
       {children}
@@ -52,19 +54,19 @@ function SelectPercentage({children}) {
         <option value="10">it was good (10%)</option>
         <option value="20">Absolutely Amazing! (20%)</option>
       </select>
-
-    </div>);
-}
-
-function BillInput({isPrice,children}) {
-  return (
-    <div>
-      {children}
-      <input type="text" value={isPrice} onChange="isPrice" />
     </div>
   );
 }
 
-function Output(){
+function BillInput({ isPrice, children }) {
+  function handleinput() {}
 
+  return (
+    <div>
+      {children}
+      <input type="text" value={isPrice} onChange />
+    </div>
+  );
 }
+
+function Output() {}

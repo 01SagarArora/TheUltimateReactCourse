@@ -24,3 +24,5 @@ pizza-menu/package-lock.json
 steps/package-lock.json
 usepopcorn/.gitignore
 accordion/package-lock.json
+package-lock.json
+node_modules/*

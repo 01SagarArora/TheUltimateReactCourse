@@ -50,6 +50,10 @@ import { useEffect, useState } from "react";
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
+function Loader() {
+  return <p className="loader"> Loading...</p>;
+}
+
 function NavBar({ children }) {
   return (
     <nav className="nav-bar">
@@ -93,7 +97,7 @@ function Main({ children }) {
   return <main className="main">{children}</main>;
 }
 
-function Box({ element }) {
+function Box({ children }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -101,7 +105,7 @@ function Box({ element }) {
       <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
         {isOpen ? "–" : "+"}
       </button>
-      {isOpen && element}
+      {isOpen && children}
     </div>
   );
 }
@@ -237,15 +241,19 @@ const KEY = "ac2e03a6";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+
   const query = "interstellar";
 
   useEffect(function () {
     async function fetchMovies() {
+      setLoading(true);
       const res = await fetch(
         `https://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`
       );
       const data = await res.json();
       setMovies(data.Search);
+      setLoading(false);
     }
     fetchMovies();
   }, []);
@@ -257,21 +265,12 @@ export default function App() {
         <NumResults />
       </NavBar>
       <Main>
-        <Box element={<MovieList movies={movies} />}>
-          <MovieList movies={movies} />
-        </Box>
+        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
 
-        {/* <Box>
-          <MovieList movies={movies} />
-        </Box> */}
-        <Box
-          element={
-            <>
-              <WatchedSummary watched={watched} />
-              <WatchedMovieList watched={watched} />
-            </>
-          }
-        ></Box>
+        <Box>
+          <WatchedSummary watched={watched} />
+          <WatchedMovieList watched={watched} />
+        </Box>
       </Main>
     </>
   );

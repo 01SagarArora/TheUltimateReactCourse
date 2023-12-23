@@ -26,3 +26,4 @@ usepopcorn/.gitignore
 accordion/package-lock.json
 package-lock.json
 node_modules/*
+accordion/node_modules/.bin/ansi-html

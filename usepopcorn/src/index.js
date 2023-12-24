@@ -19,20 +19,6 @@ function Test() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <StarRating
-      maxRating={5}
-      color="red"
-      className="test"
-      messages={["Terrible", "Bad", "Okay", "Good", "Amazing"]}
-    />
-    <StarRating
-      maxRating={3}
-      color="blue"
-      className="test"
-      messages={["Okay", "Good", "Amazing"]}
-      defaultRating={2}
-    />
-    <Test />
+    <App />
   </React.StrictMode>
 );

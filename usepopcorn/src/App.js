@@ -40,6 +40,7 @@ export default function App() {
           setError("");
         } catch (err) {
           if (err.name !== "AbortError") {
+            console.log(err.message);
             setError(err.message);
           }
         } finally {
@@ -52,6 +53,7 @@ export default function App() {
         setError("");
         return;
       }
+      handleCloseMovie();
       fetchMovies();
 
       return function () {
@@ -264,7 +266,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
         );
         const data = await res.json();
         setMovie(data);
-        console.log(data);
         setIsLoading(false);
       }
       getMovieDetails();
@@ -282,6 +283,22 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       };
     },
     [title]
+  );
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseMovie]
   );
 
   return (

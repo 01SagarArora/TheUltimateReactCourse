@@ -7,6 +7,8 @@ steps/node_modules/*
 ../node_modules/*
 usepopcorn/node_modules/*
 accordion/node_modules/*
+react-quiz/node_modules/*
+
 accordion/public/.DS_Store
 accordion/.DS_Store
 .DS_Store

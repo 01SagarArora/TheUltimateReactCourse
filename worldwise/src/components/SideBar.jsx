@@ -6,7 +6,7 @@ import AppNav from "./AppNav"
 
 function Sidebar() {
     return (
-        <div className={styles.Sidebar}>
+        <div className={styles.sidebar}>
             <Logo/>
             <AppNav />
 

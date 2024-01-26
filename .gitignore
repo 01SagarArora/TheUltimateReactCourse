@@ -31,3 +31,5 @@ node_modules/*
 accordion/node_modules/.bin/ansi-html
 worldwise/starter/*
 appPassword
+worldwise/src/App3.jsx
+worldwise/data/cities.json

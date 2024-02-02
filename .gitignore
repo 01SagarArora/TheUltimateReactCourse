@@ -33,3 +33,6 @@ worldwise/starter/*
 appPassword
 worldwise/src/App3.jsx
 worldwise/data/*
+atomic-blog/node_modules/*
+accordion/node_modules/*
+12-atomic-blog/*

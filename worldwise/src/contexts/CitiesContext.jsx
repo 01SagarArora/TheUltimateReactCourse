@@ -1,15 +1,10 @@
-import { createContext, useEffect, useState } from "react";
-import { createHashRouter } from "react-router-dom";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 
 const BASE_URL = `http://localhost:9000`;
 
 const CitiesContext = createContext();
-
-CitiesContext.Provider.PropTypes = {
-  children: PropTypes.node,
-};
 
 // eslint-disable-next-line react/prop-types
 function CitiesProvider({ children }) {
@@ -39,9 +34,16 @@ function CitiesProvider({ children }) {
         isLoading,
       }}
     >
-      {}
+      {children}
     </CitiesContext.Provider>
   );
 }
 
-export { CitiesProvider };
+function useCities() {
+  const context = useContext(CitiesContext);
+  if (context === undefined)
+    throw new Error("Cities Context was used outside the CitiesProvider");
+  return context;
+}
+
+export { CitiesProvider, useCities };

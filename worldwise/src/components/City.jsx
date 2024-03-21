@@ -29,8 +29,6 @@ function City() {
 
   const { cityName, date, emoji, notes } = currentCity;
 
-  // var date = "2027-10-31T15:59:59.138Z";
-
   if (isLoading) return <Spinner />;
 
   return (

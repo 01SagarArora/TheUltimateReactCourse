@@ -79,7 +79,7 @@ function CitiesProvider({ children }) {
       } catch {
         dispatch({
           type: "rejected",
-          payload: "There was an error loading data",
+          payload: "There was an error fetching cities",
         });
       }
     }
@@ -97,7 +97,7 @@ function CitiesProvider({ children }) {
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error loading data",
+        payload: "There was an error fetching city",
       });
     }
   }
@@ -116,7 +116,7 @@ function CitiesProvider({ children }) {
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error loading data",
+        payload: "There was an error creating city",
       });
     }
   }
@@ -130,7 +130,7 @@ function CitiesProvider({ children }) {
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error loading data",
+        payload: "There was an error deleting city",
       });
     }
   }

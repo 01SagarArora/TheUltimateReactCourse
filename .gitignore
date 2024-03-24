@@ -27,3 +27,7 @@ accordion/package-lock.json
 package-lock.json
 node_modules/*
 accordion/node_modules/.bin/ansi-html
+atomic-blog/node_modules/*
+react-quiz/node_modules/*
+worldwise/.vite/deps_temp_cad6509e/package.json
+worldwise/node_modules/*

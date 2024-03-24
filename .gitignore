@@ -37,3 +37,5 @@ atomic-blog/node_modules/*
 accordion/node_modules/*
 12-atomic-blog/*
 atomic-blog/node_modules/@babel/helper-simple-access/lib/index.js
+atomic-blog/node_modules/*
+atomic-blog/build/*
